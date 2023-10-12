@@ -7,7 +7,7 @@
 
 
 
-alert("Hello! I am an alert box!! created by zeeshan hasnain jalali");
+alert("Hello! I am an alert box!! created by zeeshan hasnain jalali! Pakistan zindabad v 5.0");
 
 (function() {
     'use strict';
