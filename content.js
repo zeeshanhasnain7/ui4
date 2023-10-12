@@ -1,7 +1,12 @@
 (function() {
   'use strict';
 
-  /* this the start of the chat ticket escalation option */
+
+    //=== TICKET ESCALATIONS
+
+
+
+
 
 
 (function() {
@@ -42,7 +47,9 @@
     observer.observe(document.documentElement, { childList: true, subtree: true });
 })();
 
-/* this the end of the chat ticket escalation option */
+
+
+    //====== OPEN UI AND OLD AND NEW UI BUTTONS
 
   // Function to add the UI toggle button
   function addUIButton() {
@@ -54,6 +61,8 @@
       button.style.background = '#1890ff';
       button.style.color = '#fff';
       button.style.height = '40px';
+              button.style.marginRight = '200px';
+
       button.style.borderRadius = '10px';
       button.style.width = '100px';
       button.style.textAlign = 'center';
@@ -96,5 +105,74 @@
   document.addEventListener('keydown', handleShortcut);
 
   // Delay execution by 3 seconds using setTimeout
-  setTimeout(addUIButton, 10000);
+  setTimeout(addUIButton, 6000);
+
+
+
+
+
+
+
+    (function() {
+    'use strict';
+
+    // Function to open the iframe link in a new tab
+    function openUILink() {
+        var iframe = document.querySelector('iframe');  // Replace with the appropriate iframe selector
+        if (iframe) {
+            var link = iframe.src;
+            window.open(link, '_blank');
+        }
+    }
+
+    // MutationObserver to wait for the header tag with a timeout of 5 seconds
+    var timeout = 5000;
+    var observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            var header = document.querySelector('header');  // Replace with the appropriate header selector
+            if (header && header.getElementsByClassName('open-ui-button').length === 0) {
+                // Create the button element
+                var button = document.createElement('button');
+
+      button.style.marginRight = '10px';
+      button.style.background = 'white';
+      button.style.color = '#1890ff';
+      button.style.height = '40px';
+              button.style.marginRight = '20px';
+                button.style.outlineColor = '#1890ff';
+
+      button.style.borderRadius = '10px';
+      button.style.width = '100px';
+      button.style.textAlign = 'center';
+      button.style.verticalAlign = 'middle';
+      button.style.outline = 'none';
+      button.style.lineHeight = '40px';
+
+
+                button.innerText = 'Open UI';
+                button.className = 'open-ui-button';
+                button.addEventListener('click', openUILink);
+                header.appendChild(button);
+
+                observer.disconnect();  // Stop observing once the header tag is found
+            }
+        });
+    });
+
+    // Start observing the document with the specified configuration
+    var config = { childList: true, subtree: true };
+    observer.observe(document, config);
+
+    // Timeout function to stop observing after the specified time
+    setTimeout(function() {
+        observer.disconnect();
+    }, timeout);
+})();
+
+
+
+
+
+
+
 })();
